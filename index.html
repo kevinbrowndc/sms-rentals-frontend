@@ -1,10 +1,56 @@
 <!doctype html>
-<html>
-  <head>
-    <title>SMS Rental Alerts</title>
-  </head>
-  <body>
-    <h1>It works</h1>
-    <p>This site is live.</p>
-  </body>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Austin Rental Alerts by Text</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="container">
+    <h1>Get Austin rental alerts by text</h1>
+    <p class="subtitle">
+      We scan listings and text you rentals that match your budget.
+      No apps. No spam. Cancel anytime.
+    </p>
+
+    <form id="signupForm">
+      <label>
+        Phone number
+        <input name="phone" type="tel" placeholder="+1 512 555 0123" required />
+      </label>
+
+      <label>
+        City
+        <select name="city" required>
+          <option value="Austin">Austin</option>
+        </select>
+      </label>
+
+      <label>
+        Max monthly rent ($)
+        <input name="max_price" type="number" min="500" step="50" value="1500" required />
+      </label>
+
+      <label class="consent">
+        <input type="checkbox" required />
+        <span>
+          I agree to receive recurring SMS rental alerts.
+          Msg & data rates may apply.
+          Reply STOP to cancel, HELP for help.
+        </span>
+      </label>
+
+      <button type="submit">Start free alerts</button>
+    </form>
+
+    <div id="status"></div>
+
+    <footer>
+      <small>Austin only • Free trial • Built for renters</small>
+    </footer>
+  </main>
+
+  <script src="app.js"></script>
+</body>
 </html>
