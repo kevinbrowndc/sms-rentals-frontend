@@ -1,87 +1,70 @@
 * {
   box-sizing: border-box;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
 body {
   margin: 0;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-  background: #fafafa;
+  background: #ffffff;
   color: #111;
 }
 
 .container {
-  max-width: 560px;
-  margin: 48px auto;
-  padding: 32px;
-  background: #ffffff;
-  border-radius: 10px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+  max-width: 420px;
+  margin: 60px auto;
+  padding: 0 20px;
 }
 
 h1 {
-  margin-top: 0;
-  font-size: 28px;
+  font-size: 2rem;
+  margin-bottom: 0.25em;
 }
 
 .subtitle {
   color: #555;
-  margin-bottom: 24px;
-  font-size: 16px;
+  margin-bottom: 2rem;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 }
 
 label {
-  display: block;
-  margin-bottom: 16px;
-  font-size: 14px;
+  display: flex;
+  flex-direction: column;
+  font-size: 0.9rem;
 }
 
-input,
-select {
-  width: 100%;
-  padding: 12px;
-  margin-top: 6px;
-  font-size: 16px;
-  border-radius: 6px;
-  border: 1px solid #ccc;
-}
-
-input:focus,
-select:focus {
-  outline: none;
-  border-color: #111;
+input {
+  padding: 0.6rem;
+  font-size: 1rem;
+  margin-top: 0.25rem;
 }
 
 button {
-  width: 100%;
-  margin-top: 12px;
-  padding: 14px;
-  font-size: 16px;
-  background: #111;
-  color: white;
+  margin-top: 1rem;
+  padding: 0.75rem;
+  font-size: 1rem;
+  background: #000;
+  color: #fff;
   border: none;
-  border-radius: 6px;
   cursor: pointer;
 }
 
-button:hover {
-  opacity: 0.9;
+button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
 }
 
-.consent {
-  font-size: 13px;
-  display: flex;
-  gap: 8px;
-  align-items: flex-start;
+.status {
+  margin-top: 1rem;
+  font-weight: 500;
 }
 
-#status {
-  margin-top: 16px;
-  font-weight: 600;
-}
-
-footer {
-  margin-top: 24px;
-  text-align: center;
+.fine-print {
+  margin-top: 2rem;
+  font-size: 0.75rem;
   color: #777;
-  font-size: 12px;
 }
