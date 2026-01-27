@@ -1,45 +1,49 @@
-const form = document.getElementById("signupForm");
+const form = document.getElementById("signup-form");
 const statusEl = document.getElementById("status");
 
-function setStatus(message, isError = false) {
-  statusEl.textContent = message;
-  statusEl.style.color = isError ? "#c0392b" : "#2ecc71";
-}
+const API_BASE = "https://sms-rentals-api.onrender.com";
 
 form.addEventListener("submit", async (e) => {
   e.preventDefault();
-  setStatus("Submitting…");
+  statusEl.textContent = "";
 
-  const formData = new FormData(form);
+  const phone = document.getElementById("phone").value.trim();
+  const city = document.getElementById("city").value.trim();
+  const max_price = parseInt(document.getElementById("max_price").value, 10);
 
-  const payload = {
-    phone: formData.get("phone").trim(),
-    city: formData.get("city"),
-    max_price: Number(formData.get("max_price")),
-  };
+  if (!phone || !city || !max_price) {
+    statusEl.textContent = "Please fill out all fields.";
+    return;
+  }
 
   try {
-    const response = await fetch("/api/signup", {
+    statusEl.textContent = "Signing you up…";
+
+    const res = await fetch(`${API_BASE}/signup`, {
       method: "POST",
       headers: {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
       },
-      body: JSON.stringify(payload)
+      body: JSON.stringify({
+        phone,
+        city,
+        max_price,
+      }),
     });
 
-    let data = {};
-    try {
-      data = await response.json();
-    } catch {}
-
-    if (!response.ok) {
-      setStatus(data.detail || "Signup failed. Please try again.", true);
-      return;
+    if (!res.ok) {
+      const err = await res.text();
+      throw new Error(err);
     }
 
+    statusEl.textContent =
+      "You're signed up! You'll start receiving alerts soon.";
+
     form.reset();
-    setStatus("Success! Check your phone for a confirmation text.");
+    document.getElementById("city").value = "Austin";
   } catch (err) {
-    setStatus("Network error. Please try again.", true);
+    console.error(err);
+    statusEl.textContent =
+      "Something went wrong. Please try again in a moment.";
   }
 });
