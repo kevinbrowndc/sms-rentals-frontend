@@ -1,81 +1,57 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-<header class="site-header">
-  <!-- LOGO -->
-  <svg
-    class="logo"
-    width="260"
-    height="48"
-    viewBox="0 0 260 48"
-    xmlns="http://www.w3.org/2000/svg"
-    aria-label="Austin Rental Alerts"
-  >
-    <rect x="0" y="4" rx="8" ry="8" width="40" height="40" fill="#000" />
-    <path
-      d="M12 28v-6l8-6 8 6v6h-6v-6h-4v6z"
-      fill="#fff"
-    />
-    <text
-      x="56"
-      y="30"
-      font-family="Inter, system-ui, -apple-system, BlinkMacSystemFont, sans-serif"
-      font-size="20"
-      font-weight="600"
-      fill="#000"
-    >
-      Rental Alerts
-    </text>
-  </svg>
-</header>
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Austin Rental Alerts by Text</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
   <main class="container">
-    <h1>Get Austin rental alerts by text</h1>
+    <h1>Austin Rental Alerts</h1>
     <p class="subtitle">
-      We scan listings and text you rentals that match your budget.
-      No apps. No spam. Cancel anytime.
+      Get SMS alerts when apartments matching your price hit the market.
     </p>
 
-    <form id="signupForm">
+    <form id="signup-form">
       <label>
         Phone number
-        <input name="phone" type="tel" placeholder="+1 512 555 0123" required />
+        <input
+          type="tel"
+          id="phone"
+          placeholder="+1 512 555 1234"
+          required
+        />
       </label>
 
       <label>
         City
-        <select name="city" required>
-          <option value="Austin">Austin</option>
-        </select>
+        <input
+          type="text"
+          id="city"
+          value="Austin"
+          required
+        />
       </label>
 
       <label>
         Max monthly rent ($)
-        <input name="max_price" type="number" min="500" step="50" value="1500" required />
+        <input
+          type="number"
+          id="max_price"
+          placeholder="1500"
+          required
+        />
       </label>
 
-      <label class="consent">
-        <input type="checkbox" required />
-        <span>
-          I agree to receive recurring SMS rental alerts.
-          Msg & data rates may apply.
-          Reply STOP to cancel, HELP for help.
-        </span>
-      </label>
-
-      <button type="submit">Start free alerts</button>
+      <button type="submit">Get Alerts</button>
     </form>
 
-    <div id="status"></div>
+    <p id="status" class="status"></p>
 
-    <footer>
-      <small>Austin only • Free trial • Built for renters</small>
-    </footer>
+    <p class="fine-print">
+      By signing up, you agree to receive SMS alerts. Reply STOP to unsubscribe.
+    </p>
   </main>
 
   <script src="app.js"></script>
