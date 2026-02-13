@@ -130,18 +130,23 @@ about rental opportunities in Austin.
   <label for="max_price">Max monthly rent ($)</label>
   <input id="max_price" type="number" value="1500" required />
 
-  <!-- Explicit Consent Checkbox -->
-  <div style="margin-top:18px;">
-    <input type="checkbox" id="smsConsent" required />
-    <label for="smsConsent" style="font-size:14px; font-weight:400;">
-      I agree to receive recurring SMS rental alerts from RentalSMS,
-      operated by Kevin Brown. Message frequency may vary (up to 3
-      messages per day). Message and data rates may apply.
-      Reply STOP to unsubscribe. Reply HELP for help.
-      View our <a href="/privacy">Privacy Policy</a> and
-      <a href="/terms">Terms of Service</a>.
-    </label>
-  </div>
+<!-- Explicit Consent Checkbox -->
+<div style="margin-top:18px; display:flex; align-items:flex-start;">
+  <input
+    type="checkbox"
+    id="smsConsent"
+    required
+    style="margin-right:10px; margin-top:4px;"
+  />
+  <label for="smsConsent" style="font-size:14px; font-weight:400; line-height:1.5;">
+    I agree to receive recurring SMS rental alerts from RentalSMS,
+    operated by Kevin Brown. Message frequency may vary (up to 3
+    messages per day). Message and data rates may apply.
+    Reply STOP to unsubscribe. Reply HELP for help.
+    View our <a href="/privacy">Privacy Policy</a> and
+    <a href="/terms">Terms of Service</a>.
+  </label>
+</div>
 
   <button type="submit">Get Alerts</button>
 
