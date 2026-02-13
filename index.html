@@ -120,40 +120,35 @@ Users sign up on this website to receive recurring text messages
 about rental opportunities in Austin.
     </p>
 
-    <form id="signup-form">
-      <label for="phone">Phone number</label>
-      <input id="phone" type="tel" placeholder="" required />
+<form id="signup-form">
+  <label for="phone">Phone number</label>
+  <input id="phone" type="tel" placeholder="+1 512 555 1234" required />
 
-      <label for="city">City</label>
-      <input id="city" type="text" value="Austin" required />
+  <label for="city">City</label>
+  <input id="city" type="text" value="Austin" required />
 
-      <label for="max_price">Max monthly rent ($)</label>
-      <input id="max_price" type="number" value="1500" required />
+  <label for="max_price">Max monthly rent ($)</label>
+  <input id="max_price" type="number" value="1500" required />
 
-      <button type="submit">Get Alerts</button>
+  <!-- Explicit Consent Checkbox -->
+  <div style="margin-top:18px;">
+    <input type="checkbox" id="smsConsent" required />
+    <label for="smsConsent" style="font-size:14px; font-weight:400;">
+      I agree to receive recurring SMS rental alerts from RentalSMS,
+      operated by Kevin Brown. Message frequency may vary (up to 3
+      messages per day). Message and data rates may apply.
+      Reply STOP to unsubscribe. Reply HELP for help.
+      View our <a href="/privacy">Privacy Policy</a> and
+      <a href="/terms">Terms of Service</a>.
+    </label>
+  </div>
 
-      <p class="small">
-        <div style="margin-top:15px;">
-  <input type="checkbox" id="smsConsent" required>
-  <label for="smsConsent" style="font-size:14px;">
-    I agree to receive recurring SMS rental alerts from RentalSMS.
-    Message frequency may vary. Message & data rates may apply.
-    Reply STOP to unsubscribe. Reply HELP for help.
-    View our <a href="/privacy">Privacy Policy</a> and 
-    <a href="/terms">Terms of Service</a>.
-  </label>
-</div>
-By signing up, you agree to receive recurring SMS messages from RentalSMS, operated by Kevin Brown.
+  <button type="submit">Get Alerts</button>
 
-Message frequency may vary.
-Message and data rates may apply.
-Reply STOP to unsubscribe.
-Reply HELP for help.
-      </p>
-
-      <div id="status" class="status"></div>
-    </form>
-
+  <div id="status" class="status"></div>
+</form>
+✅ Update Footer (Important for Approval)
+Replace your footer with this:
     <div class="section">
       <h2>How it works</h2>
       <p>
