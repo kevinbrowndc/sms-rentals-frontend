@@ -7,19 +7,7 @@
 
 <meta name="description" content="RentalSMS provides opt-in recurring SMS alerts for rental listings in Austin. Reply STOP to unsubscribe." />
 
-<meta property="og:title" content="RentalSMS | Instant Apartment Alerts in Austin" />
-<meta property="og:description" content="Get notified when new rental listings match your budget. Recurring SMS alerts. Reply STOP to unsubscribe." />
-<meta property="og:image" content="https://rentalsms.com/rentalsms_sm.png" />
-<meta property="og:url" content="https://rentalsms.com/" />
-<meta property="og:type" content="website" />
-
-<meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="RentalSMS | Instant Apartment Alerts in Austin" />
-<meta name="twitter:description" content="Get notified when new rental listings match your budget via SMS." />
-<meta name="twitter:image" content="https://rentalsms.com/rentalsms_sm.png" />
-
 <style>
-
 body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   background: #ffffff;
@@ -28,20 +16,18 @@ body {
   line-height: 1.6;
 }
 
+/* ===== HEADER ===== */
+
 .container {
   max-width: 720px;
   margin: 0 auto;
   padding: 48px 20px;
-  position: relative;
 }
-
-/* ===== HEADER ===== */
 
 .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 1rem;
 }
 
 .hamburger {
@@ -51,43 +37,62 @@ body {
   flex-direction: column;
   justify-content: space-between;
   cursor: pointer;
+  z-index: 1001;
 }
 
 .hamburger span {
   height: 3px;
   background: #111827;
   border-radius: 2px;
-  transition: 0.3s ease;
 }
 
-.menu {
-  position: absolute;
-  top: 70px;
-  right: 20px;
+/* ===== DRAWER ===== */
+
+.drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 260px;
+  height: 100%;
   background: #ffffff;
-  border: 1px solid #e5e7eb;
-  border-radius: 8px;
-  padding: 16px;
-  width: 200px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
-  display: none;
-  z-index: 100;
+  box-shadow: -10px 0 30px rgba(0,0,0,0.15);
+  transform: translateX(100%);
+  transition: transform 0.3s ease;
+  padding: 80px 24px;
+  z-index: 1002;
 }
 
-.menu a {
+.drawer.active {
+  transform: translateX(0);
+}
+
+.drawer a {
   display: block;
-  padding: 8px 0;
+  margin-bottom: 20px;
   text-decoration: none;
+  font-weight: 600;
   color: #111827;
-  font-weight: 500;
 }
 
-.menu a:hover {
+.drawer a:hover {
   color: #374151;
 }
 
-.menu.active {
-  display: block;
+/* ===== BACKDROP ===== */
+
+.backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.4);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease;
+  z-index: 1000;
+}
+
+.backdrop.active {
+  opacity: 1;
+  visibility: visible;
 }
 
 /* ===== FORM ===== */
@@ -117,7 +122,6 @@ input {
 input[type="checkbox"] {
   width: auto;
   margin: 4px 0 0 0;
-  padding: 0;
 }
 
 button {
@@ -159,11 +163,19 @@ footer a {
 footer a:hover {
   text-decoration: underline;
 }
-
 </style>
 </head>
 
 <body>
+
+<div class="backdrop" id="backdrop"></div>
+
+<div class="drawer" id="drawer">
+  <a href="/contact.html">Contact</a>
+  <a href="/privacy.html">Privacy Policy</a>
+  <a href="/terms.html">Terms of Service</a>
+</div>
+
 <main class="container">
 
 <div class="header">
@@ -175,12 +187,6 @@ footer a:hover {
   </div>
 </div>
 
-<nav class="menu" id="menu">
-  <a href="/privacy.html">Privacy Policy</a>
-  <a href="/terms.html">Terms of Service</a>
-  <a href="/contact.html">Contact</a>
-</nav>
-
 <p>
 RentalSMS provides opt-in SMS alerts when new rental listings
 matching your preferences become available.
@@ -188,6 +194,7 @@ Users sign up on this website to receive recurring text messages about rental op
 </p>
 
 <form id="signup-form">
+
 <label for="phone">Phone number</label>
 <input id="phone" type="tel" required />
 
@@ -201,10 +208,12 @@ Users sign up on this website to receive recurring text messages about rental op
 <label style="display:flex; align-items:flex-start; gap:12px; font-size:14px; line-height:1.5;">
 <input type="checkbox" id="smsConsent" required />
 <span>
-I agree to receive recurring SMS rental alerts from RentalSMS, operated by Kevin Brown.
-Message frequency may vary (up to 3 messages per day). Message and data rates may apply.
+I agree to receive recurring SMS rental alerts from RentalSMS,
+operated by Kevin Brown. Message frequency may vary (up to 3 messages per day).
+Message and data rates may apply.
 Reply STOP to unsubscribe. Reply HELP for help.
-View our <a href="/privacy.html">Privacy Policy</a> and <a href="/terms.html">Terms of Service</a>.
+View our <a href="/privacy.html">Privacy Policy</a> and
+<a href="/terms.html">Terms of Service</a>.
 </span>
 </label>
 </div>
@@ -236,19 +245,27 @@ Support: Reply <strong>HELP</strong> or email
 
 <script>
 
-/* ===== Hamburger Toggle ===== */
+/* ===== Drawer Logic ===== */
 
 const hamburger = document.getElementById("hamburger");
-const menu = document.getElementById("menu");
+const drawer = document.getElementById("drawer");
+const backdrop = document.getElementById("backdrop");
 
-hamburger.addEventListener("click", () => {
-  menu.classList.toggle("active");
-});
+function openDrawer() {
+  drawer.classList.add("active");
+  backdrop.classList.add("active");
+}
 
-document.addEventListener("click", (e) => {
-  if (!hamburger.contains(e.target) && !menu.contains(e.target)) {
-    menu.classList.remove("active");
-  }
+function closeDrawer() {
+  drawer.classList.remove("active");
+  backdrop.classList.remove("active");
+}
+
+hamburger.addEventListener("click", openDrawer);
+backdrop.addEventListener("click", closeDrawer);
+
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape") closeDrawer();
 });
 
 /* ===== Signup ===== */
@@ -286,5 +303,6 @@ form.addEventListener("submit", async (e) => {
 });
 
 </script>
+
 </body>
 </html>
