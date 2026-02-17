@@ -123,13 +123,81 @@
       margin-top: 1rem;
       font-weight: 600;
     }
+
+    .header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.hamburger {
+  width: 28px;
+  height: 22px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  cursor: pointer;
+}
+
+.hamburger span {
+  height: 3px;
+  background: #111827;
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
+/* Dropdown Menu */
+
+.menu {
+  position: absolute;
+  top: 80px;
+  right: 20px;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 16px;
+  width: 200px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+  display: none;
+}
+
+.menu a {
+  display: block;
+  padding: 8px 0;
+  text-decoration: none;
+  color: #111827;
+  font-weight: 500;
+}
+
+.menu a:hover {
+  color: #374151;
+}
+
+.menu.active {
+  display: block;
+}
   </style>
 </head>
 
 <body>
   <main class="container">
 
-    <h1>RentalSMS</h1>
+    <div class="header">
+  <h1 style="margin:0;">RentalSMS</h1>
+
+  <div class="hamburger" id="hamburger">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav class="menu" id="menu">
+  <a href="/contact.html">Contact</a>
+  <a href="/privacy.html">Privacy Policy</a>
+  <a href="/terms.html">Terms of Service</a>
+</nav>
     <p>
       RentalSMS provides opt-in SMS alerts when new rental listings
 matching your preferences become available.
@@ -251,8 +319,23 @@ about rental opportunities in Austin.
       } finally {
         button.disabled = false;
       }
-    });
+    });<script>
+  const hamburger = document.getElementById("hamburger");
+  const menu = document.getElementById("menu");
+
+  hamburger.addEventListener("click", () => {
+    menu.classList.toggle("active");
+  });
+
+  // Close if clicked outside
+  document.addEventListener("click", (e) => {
+    if (!hamburger.contains(e.target) && !menu.contains(e.target)) {
+      menu.classList.remove("active");
+    }
+  });
+</script>
   </script>
+    
 </body>
 </html>
 
