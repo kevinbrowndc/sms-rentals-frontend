@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>About | RentalSMS</title>
+
+<meta name="description" content="Learn about RentalSMS – SMS rental alert service operated by Kevin Brown." />
+
+<style>
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  background-color: #ffffff;
+  color: #111827;
+  margin: 0;
+  line-height: 1.6;
+}
+
+/* ===== Layout ===== */
+
+.container {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 48px 20px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+h1 {
+  font-size: 2rem;
+  margin: 0;
+}
+
+h2 {
+  margin-top: 2.5rem;
+  font-size: 1.25rem;
+}
+
+p {
+  margin-top: 1rem;
+  color: #374151;
+}
+
+/* ===== Hamburger ===== */
+
+.hamburger {
+  width: 26px;
+  height: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  cursor: pointer;
+  z-index: 1001;
+}
+
+.hamburger span {
+  height: 3px;
+  background: #111827;
+  border-radius: 2px;
+}
+
+/* ===== Drawer ===== */
+
+.drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 260px;
+  height: 100%;
+  background: #ffffff;
+  box-shadow: -10px 0 30px rgba(0,0,0,0.15);
+  transform: translateX(100%);
+  transition: transform 0.3s ease;
+  padding: 80px 24px;
+  z-index: 1002;
+}
+
+.drawer.active {
+  transform: translateX(0);
+}
+
+.drawer a {
+  display: block;
+  margin-bottom: 20px;
+  text-decoration: none;
+  font-weight: 600;
+  color: #111827;
+}
+
+.drawer a:hover {
+  color: #374151;
+}
+
+/* ===== Backdrop ===== */
+
+.backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.4);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease;
+  z-index: 1000;
+}
+
+.backdrop.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* ===== Footer ===== */
+
+footer {
+  margin-top: 4rem;
+  border-top: 1px solid #e5e7eb;
+  padding-top: 1.5rem;
+  font-size: 0.9rem;
+  color: #6b7280;
+}
+
+footer a {
+  color: #374151;
+  text-decoration: none;
+  margin-right: 1rem;
+}
+
+footer a:hover {
+  text-decoration: underline;
+}
+</style>
+</head>
+
+<body>
+
+<div class="backdrop" id="backdrop"></div>
+
+<div class="drawer" id="drawer">
+  <a href="/">Home</a>
+  <a href="/about.html">About</a>
+  <a href="/privacy.html">Privacy Policy</a>
+  <a href="/terms.html">Terms of Service</a>
+  <a href="/contact.html">Contact</a>
+</div>
+
+<main class="container">
+
+<div class="header">
+  <h1>About RentalSMS</h1>
+  <div class="hamburger" id="hamburger">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<p>
+RentalSMS is an independent SMS notification service designed to help renters find available housing faster.
+</p>
+
+<h2>Our Mission</h2>
+<p>
+Rental markets move quickly. By the time many listings are discovered, they are already under application. RentalSMS was created to provide timely, opt-in SMS alerts when new rental listings match a user’s selected location and budget.
+</p>
+
+<h2>How RentalSMS Works</h2>
+<p>
+Users voluntarily sign up on our website and provide their mobile phone number, city, and budget preferences. When new publicly available rental listings match those preferences, RentalSMS sends an informational SMS alert.
+</p>
+
+<p>
+Message frequency may vary and may be up to three messages per day depending on listing activity.
+</p>
+
+<h2>Business Information</h2>
+<p><strong>Business Name:</strong> RentalSMS</p>
+<p><strong>Operator:</strong> Kevin Brown</p>
+
+<p>
+<strong>Business Address:</strong><br>
+2010 Leitchfield Road, Box 14<br>
+Owensboro, KY 42303<br>
+United States
+</p>
+
+<p>
+<strong>Support Email:</strong>
+<a href="mailto:support@rentalsms.com">support@rentalsms.com</a>
+</p>
+
+<h2>Important Disclaimer</h2>
+<p>
+RentalSMS is not a real estate broker, property manager, or listing platform. We do not own, manage, or represent rental properties. We monitor publicly available listings and provide informational alerts only.
+</p>
+
+<p>
+RentalSMS is not affiliated with Zillow, Craigslist, Apartments.com, or any property management company.
+</p>
+
+<h2>Consent & Messaging Policy</h2>
+<p>
+RentalSMS only sends messages to users who provide explicit consent via our website. Users must check the consent box before submitting their phone number.
+</p>
+
+<ul>
+  <li>Reply STOP to unsubscribe.</li>
+  <li>Reply HELP for assistance.</li>
+  <li>Message and data rates may apply.</li>
+</ul>
+
+<footer>
+  <p>
+    <a href="/">Home</a>
+    <a href="/privacy.html">Privacy Policy</a>
+    <a href="/terms.html">Terms of Service</a>
+    <a href="/contact.html">Contact</a>
+  </p>
+
+  <p>
+    © 2026 RentalSMS. All rights reserved.
+  </p>
+</footer>
+
+</main>
+
+<script>
+const hamburger = document.getElementById("hamburger");
+const drawer = document.getElementById("drawer");
+const backdrop = document.getElementById("backdrop");
+
+function openDrawer() {
+  drawer.classList.add("active");
+  backdrop.classList.add("active");
+}
+
+function closeDrawer() {
+  drawer.classList.remove("active");
+  backdrop.classList.remove("active");
+}
+
+hamburger.addEventListener("click", openDrawer);
+backdrop.addEventListener("click", closeDrawer);
+
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape") closeDrawer();
+});
+</script>
+
+</body>
+</html>
