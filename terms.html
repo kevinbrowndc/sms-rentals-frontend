@@ -1,177 +1,283 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>RentalSMS | Terms & Conditions</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>RentalSMS | Terms & Conditions</title>
 
-  <meta name="description" content="RentalSMS Terms & Conditions – SMS rental alert service operated by Kevin Brown." />
+<meta name="description" content="RentalSMS Terms & Conditions – SMS rental alert service operated by Kevin Brown." />
 
-  <style>
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      background-color: #ffffff;
-      color: #111827;
-      margin: 0;
-      padding: 0;
-      line-height: 1.6;
-    }
+<style>
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  background-color: #ffffff;
+  color: #111827;
+  margin: 0;
+  line-height: 1.6;
+}
 
-    .container {
-      max-width: 760px;
-      margin: 0 auto;
-      padding: 48px 20px;
-    }
+/* ===== HEADER ===== */
 
-    h1 {
-      font-size: 2rem;
-      margin-bottom: 1rem;
-    }
+.container {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 48px 20px;
+}
 
-    h2 {
-      margin-top: 2rem;
-      font-size: 1.25rem;
-    }
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 
-    p {
-      margin-bottom: 1rem;
-      color: #374151;
-    }
+.hamburger {
+  width: 26px;
+  height: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  cursor: pointer;
+  z-index: 1001;
+}
 
-    ul {
-      margin-bottom: 1rem;
-      padding-left: 20px;
-    }
+.hamburger span {
+  height: 3px;
+  background: #111827;
+  border-radius: 2px;
+}
 
-    footer {
-      margin-top: 4rem;
-      border-top: 1px solid #e5e7eb;
-      padding-top: 1.5rem;
-      font-size: 0.9rem;
-      color: #6b7280;
-    }
+/* ===== DRAWER ===== */
 
-    footer a {
-      color: #374151;
-      text-decoration: none;
-      margin-right: 1rem;
-    }
+.drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 260px;
+  height: 100%;
+  background: #ffffff;
+  box-shadow: -10px 0 30px rgba(0,0,0,0.15);
+  transform: translateX(100%);
+  transition: transform 0.3s ease;
+  padding: 80px 24px;
+  z-index: 1002;
+}
 
-    footer a:hover {
-      text-decoration: underline;
-    }
-  </style>
+.drawer.active {
+  transform: translateX(0);
+}
+
+.drawer a {
+  display: block;
+  margin-bottom: 20px;
+  text-decoration: none;
+  font-weight: 600;
+  color: #111827;
+}
+
+.drawer a:hover {
+  color: #374151;
+}
+
+/* ===== BACKDROP ===== */
+
+.backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.4);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease;
+  z-index: 1000;
+}
+
+.backdrop.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* ===== CONTENT ===== */
+
+h1 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+h2 {
+  margin-top: 2rem;
+  font-size: 1.25rem;
+}
+
+p {
+  margin-bottom: 1rem;
+  color: #374151;
+}
+
+ul {
+  margin-bottom: 1rem;
+  padding-left: 20px;
+}
+
+footer {
+  margin-top: 4rem;
+  border-top: 1px solid #e5e7eb;
+  padding-top: 1.5rem;
+  font-size: 0.9rem;
+  color: #6b7280;
+}
+
+footer a {
+  color: #374151;
+  text-decoration: none;
+  margin-right: 1rem;
+}
+
+footer a:hover {
+  text-decoration: underline;
+}
+</style>
 </head>
 
 <body>
-  <main class="container">
 
-    <h1>Terms & Conditions</h1>
-    <p><strong>Effective Date:</strong> January 31, 2026</p>
+<div class="backdrop" id="backdrop"></div>
 
-    <p>
-      RentalSMS (“RentalSMS,” “we,” “us,” or “our”) is an informational SMS rental alert service operated by Kevin Brown and located at:
-    </p>
+<div class="drawer" id="drawer">
+  <a href="/">Home</a>
+  <a href="/privacy.html">Privacy Policy</a>
+  <a href="/terms.html">Terms of Service</a>
+  <a href="/contact.html">Contact</a>
+</div>
 
-    <p>
-      2010 Leitchfield Road, Box 14<br>
-      Owensboro, KY 42303<br>
-      United States
-    </p>
+<main class="container">
 
-    <p>
-      By using RentalSMS and submitting your phone number through our website, you agree to these Terms & Conditions.
-    </p>
+<div class="header">
+  <h1 style="margin:0;">Terms & Conditions</h1>
+  <div class="hamburger" id="hamburger">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
 
-    <h2>1. Service Description</h2>
-    <p>
-      RentalSMS provides opt-in SMS notifications when rental listings match criteria selected by the user (such as city and budget).
-      RentalSMS is an informational service only and does not own, manage, or represent any rental properties.
-    </p>
-    <p>
-      We do not guarantee the availability, accuracy, completeness, or suitability of any listing.
-    </p>
+<p><strong>Effective Date:</strong> January 31, 2026</p>
 
-    <h2>2. Eligibility</h2>
-    <p>
-      You must be at least 18 years old and the authorized user of the mobile phone number provided to use this service.
-    </p>
+<p>
+RentalSMS (“RentalSMS,” “we,” “us,” or “our”) is an informational SMS rental alert service operated by Kevin Brown and located at:
+</p>
 
-    <h2>3. SMS Consent & Messaging Terms</h2>
-    <p>
-      By providing your phone number and checking the consent box on our website, you agree to receive recurring informational SMS rental alerts from RentalSMS.
-    </p>
-    <ul>
-      <li>Message frequency may vary (up to 3 messages per day).</li>
-      <li>Message and data rates may apply.</li>
-      <li>Consent is not a condition of purchase.</li>
-      <li>Messages are informational, not promotional.</li>
-    </ul>
+<p>
+2010 Leitchfield Road, Box 14<br>
+Owensboro, KY 42303<br>
+United States
+</p>
 
-    <h2>4. Opt-Out & Support</h2>
-    <p>
-      You may opt out of SMS communications at any time by replying STOP.
-    </p>
-    <p>
-      For help, reply HELP or email <a href="mailto:support@rentalsms.com">support@rentalsms.com</a>.
-    </p>
+<p>
+By using RentalSMS and submitting your phone number through our website, you agree to these Terms & Conditions.
+</p>
 
-    <h2>5. Fees & Billing</h2>
-    <p>
-      RentalSMS may offer free or paid subscription plans. Any pricing will be clearly disclosed before billing occurs.
-    </p>
-    <p>
-      Standard carrier messaging and data rates may apply.
-    </p>
+<h2>1. Service Description</h2>
+<p>
+RentalSMS provides opt-in SMS notifications when rental listings match criteria selected by the user (such as city and budget). RentalSMS is an informational service only and does not own, manage, or represent any rental properties.
+</p>
+<p>
+We do not guarantee the availability, accuracy, completeness, or suitability of any listing.
+</p>
 
-    <h2>6. Acceptable Use</h2>
-    <p>
-      You agree not to misuse the service, attempt unauthorized access, interfere with system operations, or use the service for unlawful purposes.
-    </p>
+<h2>2. Eligibility</h2>
+<p>
+You must be at least 18 years old and the authorized user of the mobile phone number provided to use this service.
+</p>
 
-    <h2>7. Service Availability</h2>
-    <p>
-      The service is provided “as is” and “as available.” We may modify, suspend, or discontinue the service at any time without prior notice.
-    </p>
+<h2>3. SMS Consent & Messaging Terms</h2>
+<p>
+By providing your phone number and checking the consent box on our website, you agree to receive recurring informational SMS rental alerts from RentalSMS.
+</p>
+<ul>
+<li>Message frequency may vary (up to 3 messages per day)</li>
+<li>Message and data rates may apply</li>
+<li>Consent is not a condition of purchase</li>
+<li>Messages are informational, not promotional</li>
+</ul>
 
-    <h2>8. Limitation of Liability</h2>
-    <p>
-      RentalSMS is not liable for any direct, indirect, incidental, or consequential damages arising from:
-    </p>
-    <ul>
-      <li>Delays or failure of message delivery</li>
-      <li>Inaccurate or outdated rental listings</li>
-      <li>Carrier or network issues</li>
-    </ul>
+<h2>4. Opt-Out & Support</h2>
+<p>You may opt out of SMS communications at any time by replying STOP.</p>
+<p>
+For help, reply HELP or email 
+<a href="mailto:support@rentalsms.com">support@rentalsms.com</a>.
+</p>
 
-    <h2>9. Privacy</h2>
-    <p>
-      Use of the service is also governed by our Privacy Policy:
-      <a href="/privacy">https://rentalsms.com/privacy</a>
-    </p>
+<h2>5. Fees & Billing</h2>
+<p>
+RentalSMS may offer free or paid subscription plans. Any pricing will be clearly disclosed before billing occurs.
+</p>
+<p>Standard carrier messaging and data rates may apply.</p>
 
-    <h2>10. Changes to Terms</h2>
-    <p>
-      We may update these Terms & Conditions at any time. Continued use of the service constitutes acceptance of the updated Terms.
-    </p>
+<h2>6. Acceptable Use</h2>
+<p>
+You agree not to misuse the service, attempt unauthorized access, interfere with system operations, or use the service for unlawful purposes.
+</p>
 
-    <h2>11. Contact Information</h2>
-    <p>
-      For questions regarding these Terms, please contact:
-    </p>
-    <p>
-      Support: <a href="mailto:support@rentalsms.com">support@rentalsms.com</a>
-    </p>
+<h2>7. Service Availability</h2>
+<p>
+The service is provided “as is” and “as available.” We may modify, suspend, or discontinue the service at any time without prior notice.
+</p>
 
-    <footer>
-      <p>
-        <a href="/">Home</a>
-        <a href="/privacy">Privacy Policy</a>
-        <a href="/contact">Contact</a>
-      </p>
-      <p>© 2026 RentalSMS. All rights reserved.</p>
-    </footer>
+<h2>8. Limitation of Liability</h2>
+<ul>
+<li>Delays or failure of message delivery</li>
+<li>Inaccurate or outdated rental listings</li>
+<li>Carrier or network issues</li>
+</ul>
 
-  </main>
+<h2>9. Privacy</h2>
+<p>
+Use of the service is also governed by our Privacy Policy:
+<a href="/privacy.html">https://rentalsms.com/privacy</a>
+</p>
+
+<h2>10. Changes to Terms</h2>
+<p>
+We may update these Terms & Conditions at any time. Continued use of the service constitutes acceptance of the updated Terms.
+</p>
+
+<h2>11. Contact Information</h2>
+<p>
+Support: <a href="mailto:support@rentalsms.com">support@rentalsms.com</a>
+</p>
+
+<footer>
+<p>
+<a href="/">Home</a>
+<a href="/privacy.html">Privacy Policy</a>
+<a href="/contact.html">Contact</a>
+</p>
+<p>© 2026 RentalSMS. All rights reserved.</p>
+</footer>
+
+</main>
+
+<script>
+const hamburger = document.getElementById("hamburger");
+const drawer = document.getElementById("drawer");
+const backdrop = document.getElementById("backdrop");
+
+function openDrawer() {
+  drawer.classList.add("active");
+  backdrop.classList.add("active");
+}
+
+function closeDrawer() {
+  drawer.classList.remove("active");
+  backdrop.classList.remove("active");
+}
+
+hamburger.addEventListener("click", openDrawer);
+backdrop.addEventListener("click", closeDrawer);
+
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape") closeDrawer();
+});
+</script>
+
 </body>
 </html>
