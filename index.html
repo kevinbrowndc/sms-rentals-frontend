@@ -138,6 +138,15 @@ button {
   font-weight: 600;
 }
 
+.trust-box {
+  margin-top: 40px;
+  padding: 20px;
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
 footer {
   margin-top: 4rem;
   border-top: 1px solid #e5e7eb;
@@ -177,8 +186,11 @@ footer a {
   </div>
 </div>
 
+<p><strong>Effective Date:</strong> February 2026</p>
+
 <p>
-RentalSMS provides opt-in SMS alerts when new rental listings matching your selected city and budget become available. This is an informational rental notification service.
+RentalSMS is an informational rental alert service operated by Kevin Brown. 
+We provide opt-in recurring SMS notifications when new rental listings match your selected city and budget preferences.
 </p>
 
 <form id="signup-form">
@@ -198,8 +210,10 @@ RentalSMS provides opt-in SMS alerts when new rental listings matching your sele
 <label style="display:flex; align-items:flex-start; gap:12px; font-size:14px; line-height:1.5; margin-top:10px;">
 <input type="checkbox" id="smsConsent" required />
 <span>
-I agree to receive recurring informational SMS rental alerts from RentalSMS, operated by Kevin Brown. Message frequency may vary (up to 3 messages per day). Message and data rates may apply. Reply STOP to unsubscribe. Reply HELP for help. View our 
-<a href="/privacy.html">Privacy Policy</a> and 
+I agree to receive recurring informational SMS rental alerts from RentalSMS, operated by Kevin Brown. 
+Message frequency may vary (up to 3 messages per day). Message and data rates may apply. 
+Reply STOP to unsubscribe. Reply HELP for help. 
+View our <a href="/privacy.html">Privacy Policy</a> and 
 <a href="/terms.html">Terms of Service</a>.
 </span>
 </label>
@@ -213,9 +227,9 @@ I agree to receive recurring informational SMS rental alerts from RentalSMS, ope
 <h2>How RentalSMS Works</h2>
 <p>
 1. You enter your city and budget.<br>
-2. RentalSMS monitors publicly available listings.<br>
+2. RentalSMS monitors publicly available rental listings.<br>
 3. When a match is detected, you receive an informational SMS alert.<br>
-4. You may unsubscribe anytime by replying STOP.
+4. You may unsubscribe at any time by replying STOP.
 </p>
 
 <h3>Example SMS</h3>
@@ -223,14 +237,21 @@ I agree to receive recurring informational SMS rental alerts from RentalSMS, ope
 Rental Alert: New 2BR apartment in Austin listed at $1,650. Reply STOP to unsubscribe. Reply HELP for help.
 </p>
 
-<footer>
-<p>
-RentalSMS is operated by Kevin Brown<br>
+<div class="trust-box">
+<strong>Business Information</strong><br><br>
+RentalSMS is operated by Kevin Brown.<br>
 2010 Leitchfield Rd, Box 14<br>
 Owensboro, KY 42303<br>
-United States
-</p>
+United States<br><br>
 
+Support Phone: +1 (877) 730-4977<br>
+Support Email: <a href="mailto:support@rentalsms.com">support@rentalsms.com</a><br><br>
+
+RentalSMS is not a real estate broker and is not affiliated with Zillow, Craigslist, or any property management company. 
+We monitor publicly available listings and send informational notifications only to users who explicitly opt in.
+</div>
+
+<footer>
 <p>
 <a href="/contact.html">Contact</a>
 <a href="/privacy.html">Privacy Policy</a>
@@ -238,8 +259,7 @@ United States
 </p>
 
 <p>
-Support: Reply <strong>HELP</strong> or email 
-<a href="mailto:support@rentalsms.com">support@rentalsms.com</a><br>
+Support: Reply <strong>HELP</strong> or call +1 (877) 730-4977<br>
 © 2026 RentalSMS
 </p>
 
@@ -252,21 +272,21 @@ const hamburger = document.getElementById("hamburger");
 const drawer = document.getElementById("drawer");
 const backdrop = document.getElementById("backdrop");
 
-function openDrawer() {
+hamburger.addEventListener("click", () => {
   drawer.classList.add("active");
   backdrop.classList.add("active");
-}
+});
 
-function closeDrawer() {
+backdrop.addEventListener("click", () => {
   drawer.classList.remove("active");
   backdrop.classList.remove("active");
-}
-
-hamburger.addEventListener("click", openDrawer);
-backdrop.addEventListener("click", closeDrawer);
+});
 
 document.addEventListener("keydown", (e) => {
-  if (e.key === "Escape") closeDrawer();
+  if (e.key === "Escape") {
+    drawer.classList.remove("active");
+    backdrop.classList.remove("active");
+  }
 });
 
 const form = document.getElementById("signup-form");
