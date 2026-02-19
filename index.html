@@ -311,12 +311,21 @@ form.addEventListener("submit", async (e) => {
       body: JSON.stringify(payload),
     });
 
-    if (!res.ok) throw new Error();
+    if (!res.ok) {
+      throw new Error("Signup failed");
+    }
 
-    statusDiv.textContent = "✅ You’re signed up! Watch your phone for alerts.";
-  } catch {
+    const data = await res.json();
+
+    if (!data.checkout_url) {
+      throw new Error("No checkout URL returned");
+    }
+
+    window.location.href = data.checkout_url;
+
+  } catch (err) {
+    console.error(err);
     statusDiv.textContent = "❌ Something went wrong. Please try again.";
-  } finally {
     button.disabled = false;
   }
 });
