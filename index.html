@@ -46,8 +46,6 @@ body {
   border-radius: 2px;
 }
 
-/* Drawer */
-
 .drawer {
   position: fixed;
   top: 0;
@@ -62,9 +60,7 @@ body {
   z-index: 1002;
 }
 
-.drawer.active {
-  transform: translateX(0);
-}
+.drawer.active { transform: translateX(0); }
 
 .drawer a {
   display: block;
@@ -73,8 +69,6 @@ body {
   font-weight: 600;
   color: #111827;
 }
-
-/* Backdrop */
 
 .backdrop {
   position: fixed;
@@ -91,8 +85,6 @@ body {
   visibility: visible;
 }
 
-/* Form */
-
 form {
   margin-top: 2rem;
   border: 1px solid #e5e7eb;
@@ -106,7 +98,7 @@ label {
   margin-top: 1rem;
 }
 
-input {
+input, select {
   width: 100%;
   padding: 10px;
   margin-top: 6px;
@@ -189,8 +181,7 @@ footer a {
 <p><strong>Effective Date:</strong> February 2026</p>
 
 <p>
-RentalSMS is an informational rental alert service operated by Kevin Brown. 
-We provide opt-in recurring SMS notifications when new rental listings match your selected city and budget preferences.
+RentalSMS provides opt-in recurring SMS notifications when new rental listings match your selected city, budget, and bedroom preference.
 </p>
 
 <form id="signup-form">
@@ -204,17 +195,25 @@ We provide opt-in recurring SMS notifications when new rental listings match you
 <label for="max_price">Max monthly rent ($)</label>
 <input id="max_price" type="number" value="1500" required />
 
+<label for="bedrooms">Bedrooms</label>
+<select id="bedrooms">
+  <option value="">Any</option>
+  <option value="0">Studio</option>
+  <option value="1">1 Bedroom</option>
+  <option value="2">2 Bedrooms</option>
+  <option value="3">3 Bedrooms</option>
+  <option value="4">4+ Bedrooms</option>
+</select>
+
 <div style="margin-top:20px;">
 <strong>SMS Consent & Messaging Disclosure</strong>
 
 <label style="display:flex; align-items:flex-start; gap:12px; font-size:14px; line-height:1.5; margin-top:10px;">
 <input type="checkbox" id="smsConsent" required />
 <span>
-I agree to receive recurring informational SMS rental alerts from RentalSMS, operated by Kevin Brown. 
+I agree to receive recurring informational SMS rental alerts from RentalSMS. 
 Message frequency may vary (up to 3 messages per day). Message and data rates may apply. 
-Reply STOP to unsubscribe. Reply HELP for help. 
-View our <a href="/privacy.html">Privacy Policy</a> and 
-<a href="/terms.html">Terms of Service</a>.
+Reply STOP to unsubscribe. Reply HELP for help.
 </span>
 </label>
 </div>
@@ -224,45 +223,12 @@ View our <a href="/privacy.html">Privacy Policy</a> and
 
 </form>
 
-<h2>How RentalSMS Works</h2>
-<p>
-1. You enter your city and budget.<br>
-2. RentalSMS monitors publicly available rental listings.<br>
-3. When a match is detected, you receive an informational SMS alert.<br>
-4. You may unsubscribe at any time by replying STOP.
-</p>
-
-<h3>Example SMS</h3>
-<p>
-Rental Alert: New 2BR apartment in Austin listed at $1,650. Reply STOP to unsubscribe. Reply HELP for help.
-</p>
-
-<div class="trust-box">
-<strong>Business Information</strong><br><br>
-RentalSMS is operated by Kevin Brown.<br>
-2010 Leitchfield Rd, Box 14<br>
-Owensboro, KY 42303<br>
-United States<br><br>
-
-Support Phone: +1 (877) 730-4977<br>
-Support Email: <a href="mailto:support@rentalsms.com">support@rentalsms.com</a><br><br>
-
-RentalSMS is not a real estate broker and is not affiliated with Zillow, Craigslist, or any property management company. 
-We monitor publicly available listings and send informational notifications only to users who explicitly opt in.
-</div>
-
 <footer>
 <p>
 <a href="/contact.html">Contact</a>
 <a href="/privacy.html">Privacy Policy</a>
 <a href="/terms.html">Terms of Service</a>
 </p>
-
-<p>
-Support: Reply <strong>HELP</strong> or call +1 (877) 730-4977<br>
-© 2026 RentalSMS
-</p>
-
 </footer>
 
 </main>
@@ -282,13 +248,6 @@ backdrop.addEventListener("click", () => {
   backdrop.classList.remove("active");
 });
 
-document.addEventListener("keydown", (e) => {
-  if (e.key === "Escape") {
-    drawer.classList.remove("active");
-    backdrop.classList.remove("active");
-  }
-});
-
 const form = document.getElementById("signup-form");
 const statusDiv = document.getElementById("status");
 const button = form.querySelector("button");
@@ -298,10 +257,13 @@ form.addEventListener("submit", async (e) => {
   statusDiv.textContent = "";
   button.disabled = true;
 
+  const bedroomsValue = document.getElementById("bedrooms").value;
+
   const payload = {
     phone: document.getElementById("phone").value.trim(),
     city: document.getElementById("city").value.trim(),
     max_price: Number(document.getElementById("max_price").value),
+    bedrooms: bedroomsValue === "" ? null : Number(bedroomsValue)
   };
 
   try {
@@ -316,11 +278,6 @@ form.addEventListener("submit", async (e) => {
     }
 
     const data = await res.json();
-
-    if (!data.checkout_url) {
-      throw new Error("No checkout URL returned");
-    }
-
     window.location.href = data.checkout_url;
 
   } catch (err) {
