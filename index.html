@@ -5,7 +5,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <link rel="icon" type="image/x-icon" href="/favicon.ico">
-<title>RentalSMS | Instant Apartment Alerts by Text</title>
+<title>RentalSMS | Instant Apartment Alerts</title>
 
 <!-- Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-V2RPXZWCDN"></script>
@@ -16,22 +16,79 @@ gtag('js', new Date());
 gtag('config', 'G-V2RPXZWCDN');
 </script>
 
-<!-- Open Graph -->
-<meta property="og:type" content="website">
-<meta property="og:title" content="Find Apartments Before They're Gone – RentalSMS">
-<meta property="og:description" content="Get instant SMS alerts when new rentals match your budget. Stop refreshing Craigslist.">
-<meta property="og:url" content="https://rentalsms.com/">
-<meta property="og:image" content="https://rentalsms.com/rentalsms_sm.png">
-
 <style>
 body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  background: #ffffff;
-  color: #111827;
   margin: 0;
   line-height: 1.6;
+  color: #111827;
+  background: #ffffff;
 }
 
+/* HERO SECTION */
+.hero {
+  position: relative;
+  background: url('hero.png') center center / cover no-repeat;
+  padding: 120px 20px;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to right,
+    rgba(255,255,255,0.95) 0%,
+    rgba(255,255,255,0.85) 35%,
+    rgba(255,255,255,0.65) 60%,
+    rgba(255,255,255,0.35) 100%);
+}
+
+.hero-content {
+  position: relative;
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.hero h2 {
+  font-size: 2.4rem;
+  line-height: 1.2;
+  margin-bottom: 16px;
+}
+
+.hero p {
+  font-size: 1.2rem;
+  color: #374151;
+  margin-bottom: 24px;
+}
+
+.hero-bullets div {
+  margin: 10px 0;
+  font-size: 16px;
+}
+
+.cta-button {
+  display: inline-block;
+  background: #fbbf24;
+  color: #111827;
+  font-weight: 700;
+  padding: 14px 28px;
+  border-radius: 8px;
+  text-decoration: none;
+  margin-top: 24px;
+  font-size: 1rem;
+}
+
+.cta-button:hover {
+  opacity: 0.9;
+}
+
+.hero-trust {
+  margin-top: 18px;
+  font-size: 14px;
+  color: #6b7280;
+}
+
+/* MAIN CONTENT */
 .container {
   max-width: 720px;
   margin: 0 auto;
@@ -42,104 +99,6 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-}
-
-.hamburger {
-  width: 26px;
-  height: 20px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  cursor: pointer;
-  z-index: 1001;
-}
-
-.hamburger span {
-  height: 3px;
-  background: #111827;
-  border-radius: 2px;
-}
-
-.drawer {
-  position: fixed;
-  top: 0;
-  right: 0;
-  width: 260px;
-  height: 100%;
-  background: #ffffff;
-  box-shadow: -10px 0 30px rgba(0,0,0,0.15);
-  transform: translateX(100%);
-  transition: transform 0.3s ease;
-  padding: 80px 24px;
-  z-index: 1002;
-}
-
-.drawer.active { transform: translateX(0); }
-
-.drawer a {
-  display: block;
-  margin-bottom: 20px;
-  text-decoration: none;
-  font-weight: 600;
-  color: #111827;
-}
-
-.backdrop {
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.4);
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity 0.3s ease;
-  z-index: 1000;
-}
-
-.backdrop.active {
-  opacity: 1;
-  visibility: visible;
-}
-
-/* HERO SECTION */
-.hero {
-  padding: 60px 0 30px 0;
-  text-align: center;
-}
-
-.hero h2 {
-  font-size: 2rem;
-  line-height: 1.2;
-  margin-bottom: 12px;
-}
-
-.hero p {
-  font-size: 1.1rem;
-  color: #374151;
-  margin-bottom: 20px;
-}
-
-.hero-bullets div {
-  margin: 6px 0;
-  font-size: 15px;
-  color: #374151;
-}
-
-.cta-button {
-  display: inline-block;
-  background: #fbbf24;
-  color: #111827;
-  font-weight: 700;
-  padding: 14px 24px;
-  border-radius: 8px;
-  text-decoration: none;
-  margin-top: 16px;
-}
-
-.cta-button:hover { opacity: 0.9; }
-
-.hero-trust {
-  margin-top: 20px;
-  font-size: 14px;
-  color: #6b7280;
 }
 
 /* FORM */
@@ -165,11 +124,6 @@ input, select {
   border-radius: 6px;
 }
 
-input[type="checkbox"] {
-  width: auto;
-  margin: 4px 0 0 0;
-}
-
 button {
   margin-top: 1.5rem;
   width: 100%;
@@ -183,7 +137,9 @@ button {
   cursor: pointer;
 }
 
-button:hover { opacity: 0.9; }
+button:hover {
+  opacity: 0.9;
+}
 
 .status {
   margin-top: 1rem;
@@ -204,52 +160,50 @@ footer a {
   margin-right: 1rem;
 }
 
-@media (min-width: 768px) {
-  .hero h2 { font-size: 2.4rem; }
+/* MOBILE */
+@media (max-width: 768px) {
+  .hero {
+    padding: 90px 20px;
+  }
+
+  .hero h2 {
+    font-size: 1.9rem;
+  }
+
+  .hero p {
+    font-size: 1.05rem;
+  }
 }
 </style>
 </head>
 
 <body>
 
-<div class="backdrop" id="backdrop"></div>
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <h2>Find Apartments Before They're Gone</h2>
+    <p>Instant SMS alerts when new rentals match your budget and bedrooms.</p>
 
-<div class="drawer" id="drawer">
-  <a href='/about'>About</a>
-  <a href='/privacy'>Privacy Policy</a>
-  <a href='/terms'>Terms of Service</a>
-  <a href='/faq'>FAQ</a>
-  <a href='/contact'>Contact</a>
-</div>
+    <div class="hero-bullets">
+      <div>✓ Real-time listing alerts</div>
+      <div>✓ No spam. Cancel anytime</div>
+      <div>✓ Only $12/month</div>
+    </div>
+
+    <a href="#signup-form" class="cta-button">Get My Alerts Now</a>
+
+    <div class="hero-trust">
+      Secure checkout powered by Stripe • 256-bit SSL encryption
+    </div>
+  </div>
+</section>
 
 <main class="container">
 
 <div class="header">
   <h1 style="margin:0;">RentalSMS</h1>
-  <div class="hamburger" id="hamburger">
-    <span></span>
-    <span></span>
-    <span></span>
-  </div>
 </div>
-
-<!-- HERO -->
-<section class="hero">
-  <h2>Find Apartments Before They're Gone</h2>
-  <p>Instant SMS alerts when new rentals match your budget and bedrooms.</p>
-
-  <div class="hero-bullets">
-    <div>✔ Real-time listing alerts</div>
-    <div>✔ No spam. Cancel anytime</div>
-    <div>✔ Only $12/month</div>
-  </div>
-
-  <a href="#signup-form" class="cta-button">Get My Alerts Now</a>
-
-  <div class="hero-trust">
-    Secure checkout powered by Stripe • 256-bit SSL encryption
-  </div>
-</section>
 
 <h3 style="margin-top:40px;">Start Receiving Alerts in 60 Seconds</h3>
 
@@ -277,7 +231,7 @@ footer a {
 <div style="margin-top:20px;">
 <strong>SMS Consent & Messaging Disclosure</strong>
 
-<label style="display:flex; align-items:flex-start; gap:12px; font-size:14px; line-height:1.5; margin-top:10px;">
+<label style="display:flex; gap:12px; font-size:14px; margin-top:10px;">
 <input type="checkbox" id="smsConsent" required />
 <span>
 I agree to receive recurring informational SMS rental alerts from RentalSMS.
@@ -303,20 +257,6 @@ Reply STOP to unsubscribe. Reply HELP for help.
 </main>
 
 <script>
-const hamburger = document.getElementById("hamburger");
-const drawer = document.getElementById("drawer");
-const backdrop = document.getElementById("backdrop");
-
-hamburger.addEventListener("click", () => {
-  drawer.classList.add("active");
-  backdrop.classList.add("active");
-});
-
-backdrop.addEventListener("click", () => {
-  drawer.classList.remove("active");
-  backdrop.classList.remove("active");
-});
-
 const form = document.getElementById("signup-form");
 const statusDiv = document.getElementById("status");
 const button = form.querySelector("button");
