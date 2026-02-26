@@ -30,7 +30,10 @@ body {
 .hero {
   position: relative;
   background: url('hero.png') center center / cover no-repeat;
-  padding: 140px 20px 120px 20px;
+  padding: 110px 20px 80px 20px;
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
   overflow: hidden;
 }
 
@@ -59,7 +62,15 @@ body {
   z-index: 2;
 }
 
-/* Top bar */
+/* Desktop layout */
+@media (min-width: 900px) {
+  .hero-inner {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* ================= TOP BAR ================= */
+
 .top-bar {
   position: absolute;
   top: 30px;
@@ -93,7 +104,8 @@ body {
   border-radius: 2px;
 }
 
-/* Hero text */
+/* ================= HERO TEXT ================= */
+
 .hero-text h2 {
   font-size: 2.6rem;
   line-height: 1.1;
@@ -135,29 +147,30 @@ body {
   color: #6b7280;
 }
 
-/* Phone */
+/* ================= PHONE IMAGE ================= */
+
 .hero-phone {
   text-align: center;
 }
 
 .hero-phone img {
+  width: 100%;
+  max-width: 340px;   /* polished size */
+  height: auto;
+  filter: drop-shadow(0 20px 40px rgba(0,0,0,0.25));
   animation: float 6s ease-in-out infinite;
 }
 
 @keyframes float {
   0% { transform: translateY(0px); }
-  50% { transform: translateY(-12px); }
+  50% { transform: translateY(-10px); }
   100% { transform: translateY(0px); }
 }
 
-/* Desktop */
 @media (min-width: 900px) {
-  .hero-inner {
-    grid-template-columns: 1fr 1fr;
-  }
-
   .hero-phone {
     text-align: right;
+    transform: translateY(-20px);
   }
 }
 
@@ -204,7 +217,7 @@ body {
   visibility: visible;
 }
 
-/* ================= MAIN FORM ================= */
+/* ================= FORM ================= */
 
 .container {
   max-width: 720px;
@@ -285,7 +298,6 @@ footer a {
   <a href='/contact'>Contact</a>
 </div>
 
-<!-- HERO -->
 <section class="hero">
 
   <div class="top-bar">
@@ -308,11 +320,8 @@ footer a {
         <div>✓ No spam. Cancel anytime</div>
         <div>✓ $12/month — Cancel Anytime</div>
       </div>
-      <div style="font-weight:600; margin-top:18px; color:#111;">
-      Listings move fast in Austin.
-      </div>
 
-      <a href="#signup-form" class="cta-button">Get Alerts Before They’re Gone</a>
+      <a href="#signup-form" class="cta-button">Start Getting Alerts</a>
 
       <div class="hero-trust">
         Secure checkout powered by Stripe • 256-bit SSL encryption
