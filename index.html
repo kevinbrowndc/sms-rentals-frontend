@@ -5,7 +5,8 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <link rel="icon" type="image/x-icon" href="/favicon.ico">
-<title>RentalSMS | Instant Apartment Alerts</title>
+
+<title>RentalSMS | SMS Apartment Listings</title>
 
 <!-- Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-V2RPXZWCDN"></script>
@@ -17,75 +18,36 @@ gtag('config', 'G-V2RPXZWCDN');
 </script>
 
 <style>
+
+/* GLOBAL */
+html {
+  scroll-behavior: smooth;
+}
+
 body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   margin: 0;
-  line-height: 1.6;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   color: #111827;
+  line-height: 1.6;
   background: #ffffff;
 }
 
-/* ================= HERO ================= */
-
-.hero {
-  position: relative;
-  background: url('hero.png') center center / cover no-repeat;
-  padding: 100px 20px 70px 20px;
-  min-height: 78vh;
-  display: flex;
-  align-items: center;
-  overflow: hidden;
-}
-
-.hero::before {
-  content: "";
+/* HEADER */
+.header {
   position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    to right,
-    rgba(255,255,255,0.95) 0%,
-    rgba(255,255,255,0.93) 35%,
-    rgba(255,255,255,0.75) 55%,
-    rgba(255,255,255,0.35) 80%,
-    rgba(255,255,255,0.1) 100%
-  );
-}
-
-.hero-inner {
-  position: relative;
-  max-width: 1100px;
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 40px;
-  align-items: center;
-  z-index: 2;
-}
-
-@media (min-width: 900px) {
-  .hero-inner {
-    grid-template-columns: 1fr 1fr;
-  }
-}
-
-/* ================= TOP BAR ================= */
-
-.top-bar {
-  position: absolute;
-  top: 28px;
+  top: 0;
   left: 0;
   right: 0;
-  max-width: 1100px;
-  margin: 0 auto;
+  padding: 24px 40px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  z-index: 3;
+  z-index: 10;
 }
 
-.brand {
+.logo {
   font-weight: 700;
-  font-size: 1.3rem;
+  font-size: 20px;
 }
 
 .hamburger {
@@ -103,85 +65,7 @@ body {
   border-radius: 2px;
 }
 
-/* ================= HERO TEXT ================= */
-
-.hero-text h2 {
-  font-size: 2.8rem;
-  font-weight: 800;
-  line-height: 1.08;
-  margin-bottom: 20px;
-}
-
-.hero-text p {
-  font-size: 1.2rem;
-  color: #374151;
-  margin-bottom: 24px;
-}
-
-.hero-bullets div {
-  margin: 10px 0;
-  font-size: 16px;
-}
-
-.micro-urgency {
-  margin-top: 18px;
-  font-weight: 600;
-  color: #111827;
-}
-
-.cta-button {
-  display: inline-block;
-  background: #f59e0b;
-  color: #111827;
-  font-weight: 800;
-  padding: 18px 36px;
-  border-radius: 12px;
-  text-decoration: none;
-  margin-top: 24px;
-  font-size: 1.1rem;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.18);
-  transition: all 0.2s ease;
-}
-
-.cta-button:hover {
-  transform: translateY(-3px);
-}
-
-.hero-trust {
-  margin-top: 16px;
-  font-size: 14px;
-  color: #6b7280;
-}
-
-/* ================= PHONE IMAGE ================= */
-
-.hero-phone {
-  text-align: center;
-}
-
-.hero-phone img {
-  width: 100%;
-  max-width: 340px;
-  height: auto;
-  filter: drop-shadow(0 20px 40px rgba(0,0,0,0.25));
-  animation: float 6s ease-in-out infinite;
-}
-
-@keyframes float {
-  0% { transform: translateY(0px); }
-  50% { transform: translateY(-10px); }
-  100% { transform: translateY(0px); }
-}
-
-@media (min-width: 900px) {
-  .hero-phone {
-    text-align: right;
-    transform: translateY(-20px);
-  }
-}
-
-/* ================= DRAWER ================= */
-
+/* DRAWER */
 .drawer {
   position: fixed;
   top: 0;
@@ -215,7 +99,7 @@ body {
   opacity: 0;
   visibility: hidden;
   transition: opacity 0.3s ease;
-  z-index: 1001;
+  z-index: 1000;
 }
 
 .backdrop.active {
@@ -223,26 +107,92 @@ body {
   visibility: visible;
 }
 
-/* ================= FORM ================= */
+/* HERO */
+.hero {
+  min-height: 100vh;
+  background: linear-gradient(to right, rgba(255,255,255,0.95) 40%, rgba(255,255,255,0.2)),
+              url("hero.png") center/cover no-repeat;
+  display: flex;
+  align-items: center;
+  padding: 0 40px;
+}
 
-.container {
-  max-width: 720px;
+.hero-inner {
+  max-width: 1200px;
+  width: 100%;
   margin: 0 auto;
-  padding: 60px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 60px;
+}
+
+.hero-text {
+  max-width: 520px;
+}
+
+.hero-text h1 {
+  font-size: 42px;
+  line-height: 1.15;
+  margin-bottom: 20px;
+}
+
+.hero-text p {
+  margin-bottom: 20px;
+  font-size: 18px;
+  color: #374151;
+}
+
+.hero-text ul {
+  margin-bottom: 24px;
+  padding-left: 18px;
+}
+
+.hero-text li {
+  margin-bottom: 8px;
+}
+
+.cta-button {
+  display: inline-block;
+  background: #f59e0b;
+  color: #111827;
+  padding: 14px 28px;
+  border-radius: 8px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.cta-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+}
+
+.hero-phone img {
+  max-height: 520px;
+  width: auto;
+}
+
+/* FORM SECTION */
+.form-section {
+  padding: 80px 20px;
+  display: flex;
+  justify-content: center;
 }
 
 form {
-  margin-top: 2rem;
+  max-width: 600px;
+  width: 100%;
   border: 1px solid #e5e7eb;
-  padding: 24px;
-  border-radius: 8px;
+  padding: 32px;
+  border-radius: 10px;
   background: #ffffff;
 }
 
 label {
   display: block;
   font-weight: 600;
-  margin-top: 1rem;
+  margin-top: 18px;
 }
 
 input, select {
@@ -254,21 +204,24 @@ input, select {
   border-radius: 6px;
 }
 
+input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  margin-top: 3px;
+  flex-shrink: 0;
+}
+
 button {
-  margin-top: 1.5rem;
+  margin-top: 24px;
   width: 100%;
   padding: 14px;
   font-size: 1rem;
-  font-weight: 700;
+  font-weight: 600;
   background-color: #111827;
   color: #ffffff;
   border: none;
-  border-radius: 8px;
+  border-radius: 6px;
   cursor: pointer;
-}
-
-button:hover {
-  opacity: 0.92;
 }
 
 .status {
@@ -282,6 +235,7 @@ footer {
   padding-top: 1.5rem;
   font-size: 0.9rem;
   color: #6b7280;
+  text-align: center;
 }
 
 footer a {
@@ -289,13 +243,19 @@ footer a {
   text-decoration: none;
   margin-right: 1rem;
 }
-  /* Fix oversized checkbox */
-input[type="checkbox"] {
-  width: 18px;
-  height: 18px;
-  margin-top: 4px;
-  flex-shrink: 0;
+
+/* MOBILE */
+@media (max-width: 900px) {
+  .hero-inner {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .hero-phone img {
+    max-height: 420px;
+  }
 }
+
 </style>
 </head>
 
@@ -311,54 +271,38 @@ input[type="checkbox"] {
   <a href='/contact'>Contact</a>
 </div>
 
-<section class="hero">
-
-  <div class="top-bar">
-    <div class="brand">RentalSMS</div>
-    <div class="hamburger" id="hamburger">
-      <span></span>
-      <span></span>
-      <span></span>
-    </div>
+<div class="header">
+  <div class="logo">RentalSMS</div>
+  <div class="hamburger" id="hamburger">
+    <span></span>
+    <span></span>
+    <span></span>
   </div>
+</div>
 
+<section class="hero">
   <div class="hero-inner">
-
     <div class="hero-text">
-      <h2>Find Apartments Before They're Gone</h2>
+      <h1>Find Apartments Before They're Gone</h1>
       <p>Instant SMS alerts when new rentals match your budget and bedrooms.</p>
-
-      <div class="hero-bullets">
-        <div>✓ Real-time listing alerts</div>
-        <div>✓ No spam. Cancel anytime</div>
-        <div>✓ $12/month — Cancel Anytime</div>
-      </div>
-
-      <div class="micro-urgency">
-        Austin rentals disappear in hours.
-      </div>
-
+      <ul>
+        <li>✓ Real-time listing alerts</li>
+        <li>✓ No spam. Cancel anytime</li>
+        <li>✓ Only $12/month</li>
+      </ul>
       <a href="#signup-form" class="cta-button">Start Getting Alerts</a>
-
-      <div class="hero-trust">
+      <p style="margin-top:12px;font-size:14px;color:#6b7280;">
         Secure checkout powered by Stripe • 256-bit SSL encryption
-      </div>
+      </p>
     </div>
 
     <div class="hero-phone">
-      <img src="overlay_phone.png" alt="RentalSMS text alert preview">
+      <img src="overlay_phone.png" alt="RentalSMS phone preview">
     </div>
-
   </div>
 </section>
 
-<main class="container">
-
-<h3>Enter Your Phone to Start Getting Alerts</h3>
-<p style="margin-top:-10px; color:#6b7280;">
-You’ll be redirected to secure checkout after.
-</p>
-
+<section class="form-section">
 <form id="signup-form">
 
 <label for="phone">Phone number</label>
@@ -382,7 +326,8 @@ You’ll be redirected to secure checkout after.
 
 <div style="margin-top:20px;">
 <strong>SMS Consent & Messaging Disclosure</strong>
-<label style="display:flex; gap:12px; font-size:14px; margin-top:10px;">
+
+<label style="display:flex; align-items:flex-start; gap:12px; font-size:14px; margin-top:10px; line-height:1.5;">
 <input type="checkbox" id="smsConsent" required />
 <span>
 I agree to receive recurring informational SMS rental alerts from RentalSMS.
@@ -396,16 +341,13 @@ Reply STOP to unsubscribe. Reply HELP for help.
 <div id="status" class="status"></div>
 
 </form>
+</section>
 
 <footer>
-<p>
 <a href='/contact'>Contact</a>
 <a href='/privacy'>Privacy Policy</a>
 <a href='/terms'>Terms of Service</a>
-</p>
 </footer>
-
-</main>
 
 <script>
 const hamburger = document.getElementById("hamburger");
@@ -447,7 +389,9 @@ form.addEventListener("submit", async (e) => {
       body: JSON.stringify(payload),
     });
 
-    if (!res.ok) throw new Error("Signup failed");
+    if (!res.ok) {
+      throw new Error("Signup failed");
+    }
 
     const data = await res.json();
     window.location.href = data.checkout_url;
