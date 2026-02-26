@@ -141,9 +141,13 @@ body {
 }
 
 .hero-phone img {
-  width: 100%;
-  max-width: 420px;
-  filter: drop-shadow(0 20px 40px rgba(0,0,0,0.3));
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-12px); }
+  100% { transform: translateY(0px); }
 }
 
 /* Desktop */
@@ -302,10 +306,13 @@ footer a {
       <div class="hero-bullets">
         <div>✓ Real-time listing alerts</div>
         <div>✓ No spam. Cancel anytime</div>
-        <div>✓ Only $12/month</div>
+        <div>✓ $12/month — Cancel Anytime</div>
+      </div>
+      <div style="font-weight:600; margin-top:18px; color:#111;">
+      Listings move fast in Austin.
       </div>
 
-      <a href="#signup-form" class="cta-button">Get My Alerts Now</a>
+      <a href="#signup-form" class="cta-button">Get Alerts Before They’re Gone</a>
 
       <div class="hero-trust">
         Secure checkout powered by Stripe • 256-bit SSL encryption
