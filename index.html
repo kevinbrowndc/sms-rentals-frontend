@@ -25,37 +25,50 @@ body {
   background: #ffffff;
 }
 
-/* HERO SECTION */
+/* HERO */
 .hero {
   position: relative;
   background: url('hero.png') center center / cover no-repeat;
-  padding: 120px 20px;
+  padding: 140px 20px;
+  overflow: hidden;
 }
 
 .hero::before {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(to right,
-    rgba(255,255,255,0.95) 0%,
-    rgba(255,255,255,0.85) 35%,
-    rgba(255,255,255,0.65) 60%,
-    rgba(255,255,255,0.35) 100%);
+  background: linear-gradient(
+    to right,
+    rgba(255,255,255,0.96) 0%,
+    rgba(255,255,255,0.92) 35%,
+    rgba(255,255,255,0.75) 55%,
+    rgba(255,255,255,0.4) 75%,
+    rgba(255,255,255,0.1) 100%
+  );
 }
 
-.hero-content {
+.hero-inner {
   position: relative;
-  max-width: 720px;
+  max-width: 1100px;
   margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 40px;
+  align-items: center;
 }
 
-.hero h2 {
-  font-size: 2.4rem;
-  line-height: 1.2;
-  margin-bottom: 16px;
+/* TEXT SIDE */
+.hero-text {
+  max-width: 600px;
 }
 
-.hero p {
+.hero-text h2 {
+  font-size: 2.6rem;
+  line-height: 1.1;
+  margin-bottom: 18px;
+}
+
+.hero-text p {
   font-size: 1.2rem;
   color: #374151;
   margin-bottom: 24px;
@@ -71,21 +84,45 @@ body {
   background: #fbbf24;
   color: #111827;
   font-weight: 700;
-  padding: 14px 28px;
-  border-radius: 8px;
+  padding: 16px 32px;
+  border-radius: 10px;
   text-decoration: none;
   margin-top: 24px;
-  font-size: 1rem;
+  font-size: 1.05rem;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+  transition: all 0.2s ease;
 }
 
 .cta-button:hover {
-  opacity: 0.9;
+  transform: translateY(-2px);
 }
 
 .hero-trust {
   margin-top: 18px;
   font-size: 14px;
   color: #6b7280;
+}
+
+/* PHONE SIDE */
+.hero-phone {
+  text-align: center;
+}
+
+.hero-phone img {
+  width: 100%;
+  max-width: 420px;
+  filter: drop-shadow(0 20px 40px rgba(0,0,0,0.3));
+}
+
+/* DESKTOP */
+@media (min-width: 900px) {
+  .hero-inner {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .hero-phone {
+    text-align: right;
+  }
 }
 
 /* MAIN CONTENT */
@@ -95,18 +132,13 @@ body {
   padding: 40px 20px;
 }
 
-.header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
 /* FORM */
 form {
   margin-top: 2rem;
   border: 1px solid #e5e7eb;
   padding: 24px;
   border-radius: 8px;
+  background: #ffffff;
 }
 
 label {
@@ -159,21 +191,6 @@ footer a {
   text-decoration: none;
   margin-right: 1rem;
 }
-
-/* MOBILE */
-@media (max-width: 768px) {
-  .hero {
-    padding: 90px 20px;
-  }
-
-  .hero h2 {
-    font-size: 1.9rem;
-  }
-
-  .hero p {
-    font-size: 1.05rem;
-  }
-}
 </style>
 </head>
 
@@ -181,31 +198,35 @@ footer a {
 
 <!-- HERO -->
 <section class="hero">
-  <div class="hero-content">
-    <h2>Find Apartments Before They're Gone</h2>
-    <p>Instant SMS alerts when new rentals match your budget and bedrooms.</p>
+  <div class="hero-inner">
 
-    <div class="hero-bullets">
-      <div>✓ Real-time listing alerts</div>
-      <div>✓ No spam. Cancel anytime</div>
-      <div>✓ Only $12/month</div>
+    <div class="hero-text">
+      <h2>Find Apartments Before They're Gone</h2>
+      <p>Instant SMS alerts when new rentals match your budget and bedrooms.</p>
+
+      <div class="hero-bullets">
+        <div>✓ Real-time listing alerts</div>
+        <div>✓ No spam. Cancel anytime</div>
+        <div>✓ Only $12/month</div>
+      </div>
+
+      <a href="#signup-form" class="cta-button">Get My Alerts Now</a>
+
+      <div class="hero-trust">
+        Secure checkout powered by Stripe • 256-bit SSL encryption
+      </div>
     </div>
 
-    <a href="#signup-form" class="cta-button">Get My Alerts Now</a>
-
-    <div class="hero-trust">
-      Secure checkout powered by Stripe • 256-bit SSL encryption
+    <div class="hero-phone">
+      <img src="overlay_phone.png" alt="RentalSMS text alert preview">
     </div>
+
   </div>
 </section>
 
 <main class="container">
 
-<div class="header">
-  <h1 style="margin:0;">RentalSMS</h1>
-</div>
-
-<h3 style="margin-top:40px;">Start Receiving Alerts in 60 Seconds</h3>
+<h3>Start Receiving Alerts in 60 Seconds</h3>
 
 <form id="signup-form">
 
@@ -230,7 +251,6 @@ footer a {
 
 <div style="margin-top:20px;">
 <strong>SMS Consent & Messaging Disclosure</strong>
-
 <label style="display:flex; gap:12px; font-size:14px; margin-top:10px;">
 <input type="checkbox" id="smsConsent" required />
 <span>
