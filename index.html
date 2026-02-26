@@ -1,45 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-V2RPXZWCDN"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
 
-  gtag('config', 'G-V2RPXZWCDN');
-</script>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <link rel="icon" type="image/x-icon" href="/favicon.ico">
+<title>RentalSMS | Instant Apartment Alerts by Text</title>
 
-<title>RentalSMS | SMS Apartment Listings</title>
-
-<meta property="og:type" content="website">
-<meta property="og:title" content="Austin Rental Alerts via SMS – Get Listings Instantly">
-<meta property="og:description" content="Stop refreshing Craigslist. RentalSMS sends matching Austin apartment listings directly to your phone in real time.">
-<meta property="og:url" content="https://rentalsms.com/">
-<meta property="og:site_name" content="RentalSMS">
-<meta property="og:image" content="https://rentalsms.com/rentalsms_sm.png">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
-
-<!-- Twitter Card -->
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Austin Rental Alerts via SMS – RentalSMS">
-<meta name="twitter:description" content="Matching Austin apartment listings sent directly to your phone.">
-<meta name="twitter:image" content="https://rentalsms.com/rentalsms_sm.png">
-
-  <!-- Google tag (gtag.js) -->
+<!-- Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-V2RPXZWCDN"></script>
 <script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-V2RPXZWCDN');
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-V2RPXZWCDN');
 </script>
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Find Apartments Before They're Gone – RentalSMS">
+<meta property="og:description" content="Get instant SMS alerts when new rentals match your budget. Stop refreshing Craigslist.">
+<meta property="og:url" content="https://rentalsms.com/">
+<meta property="og:image" content="https://rentalsms.com/rentalsms_sm.png">
+
 <style>
 body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
@@ -52,7 +35,7 @@ body {
 .container {
   max-width: 720px;
   margin: 0 auto;
-  padding: 48px 20px;
+  padding: 40px 20px;
 }
 
 .header {
@@ -116,6 +99,50 @@ body {
   visibility: visible;
 }
 
+/* HERO SECTION */
+.hero {
+  padding: 60px 0 30px 0;
+  text-align: center;
+}
+
+.hero h2 {
+  font-size: 2rem;
+  line-height: 1.2;
+  margin-bottom: 12px;
+}
+
+.hero p {
+  font-size: 1.1rem;
+  color: #374151;
+  margin-bottom: 20px;
+}
+
+.hero-bullets div {
+  margin: 6px 0;
+  font-size: 15px;
+  color: #374151;
+}
+
+.cta-button {
+  display: inline-block;
+  background: #fbbf24;
+  color: #111827;
+  font-weight: 700;
+  padding: 14px 24px;
+  border-radius: 8px;
+  text-decoration: none;
+  margin-top: 16px;
+}
+
+.cta-button:hover { opacity: 0.9; }
+
+.hero-trust {
+  margin-top: 20px;
+  font-size: 14px;
+  color: #6b7280;
+}
+
+/* FORM */
 form {
   margin-top: 2rem;
   border: 1px solid #e5e7eb;
@@ -156,18 +183,11 @@ button {
   cursor: pointer;
 }
 
+button:hover { opacity: 0.9; }
+
 .status {
   margin-top: 1rem;
   font-weight: 600;
-}
-
-.trust-box {
-  margin-top: 40px;
-  padding: 20px;
-  background: #f9fafb;
-  border: 1px solid #e5e7eb;
-  border-radius: 8px;
-  font-size: 14px;
 }
 
 footer {
@@ -183,6 +203,10 @@ footer a {
   text-decoration: none;
   margin-right: 1rem;
 }
+
+@media (min-width: 768px) {
+  .hero h2 { font-size: 2.4rem; }
+}
 </style>
 </head>
 
@@ -191,11 +215,11 @@ footer a {
 <div class="backdrop" id="backdrop"></div>
 
 <div class="drawer" id="drawer">
-  <a href="/about.html">About</a>
-  <a href="/privacy.html">Privacy Policy</a>
-  <a href="/terms.html">Terms of Service</a>
-  <a href="/faq.html">Frequently Asked Questions</a>
-  <a href="/contact.html">Contact</a>
+  <a href='/about'>About</a>
+  <a href='/privacy'>Privacy Policy</a>
+  <a href='/terms'>Terms of Service</a>
+  <a href='/faq'>FAQ</a>
+  <a href='/contact'>Contact</a>
 </div>
 
 <main class="container">
@@ -209,11 +233,25 @@ footer a {
   </div>
 </div>
 
-<p><strong>Effective Date:</strong> February 2026</p>
+<!-- HERO -->
+<section class="hero">
+  <h2>Find Apartments Before They're Gone</h2>
+  <p>Instant SMS alerts when new rentals match your budget and bedrooms.</p>
 
-<p>
-RentalSMS provides opt-in recurring SMS notifications when new rental listings match your selected city, budget, and bedroom preference.
-</p>
+  <div class="hero-bullets">
+    <div>✔ Real-time listing alerts</div>
+    <div>✔ No spam. Cancel anytime</div>
+    <div>✔ Only $12/month</div>
+  </div>
+
+  <a href="#signup-form" class="cta-button">Get My Alerts Now</a>
+
+  <div class="hero-trust">
+    Secure checkout powered by Stripe • 256-bit SSL encryption
+  </div>
+</section>
+
+<h3 style="margin-top:40px;">Start Receiving Alerts in 60 Seconds</h3>
 
 <form id="signup-form">
 
@@ -242,23 +280,23 @@ RentalSMS provides opt-in recurring SMS notifications when new rental listings m
 <label style="display:flex; align-items:flex-start; gap:12px; font-size:14px; line-height:1.5; margin-top:10px;">
 <input type="checkbox" id="smsConsent" required />
 <span>
-I agree to receive recurring informational SMS rental alerts from RentalSMS. 
-Message frequency may vary (up to 3 messages per day). Message and data rates may apply. 
+I agree to receive recurring informational SMS rental alerts from RentalSMS.
+Message frequency may vary (up to 3 messages per day). Message and data rates may apply.
 Reply STOP to unsubscribe. Reply HELP for help.
 </span>
 </label>
 </div>
 
-<button type="submit">Get Alerts</button>
+<button type="submit">Continue to Secure Checkout</button>
 <div id="status" class="status"></div>
 
 </form>
 
 <footer>
 <p>
-<a href="/contact.html">Contact</a>
-<a href="/privacy.html">Privacy Policy</a>
-<a href="/terms.html">Terms of Service</a>
+<a href='/contact'>Contact</a>
+<a href='/privacy'>Privacy Policy</a>
+<a href='/terms'>Terms of Service</a>
 </p>
 </footer>
 
@@ -304,9 +342,7 @@ form.addEventListener("submit", async (e) => {
       body: JSON.stringify(payload),
     });
 
-    if (!res.ok) {
-      throw new Error("Signup failed");
-    }
+    if (!res.ok) throw new Error("Signup failed");
 
     const data = await res.json();
     window.location.href = data.checkout_url;
