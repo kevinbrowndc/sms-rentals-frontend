@@ -110,11 +110,13 @@ body {
 /* HERO */
 .hero {
   min-height: 100vh;
-  background: linear-gradient(to right, rgba(255,255,255,0.95) 45%, rgba(255,255,255,0.2)),
+  background: linear-gradient(to right, rgba(255,255,255,0.95) 40%, rgba(255,255,255,0.2)),
               url("hero.png") center/cover no-repeat;
   display: flex;
   align-items: center;
-  padding: 0 40px;
+
+  /* FIX: Prevent header overlap */
+  padding: 120px 40px 60px 40px;
 }
 
 .hero-inner {
@@ -132,9 +134,8 @@ body {
 }
 
 .hero-text h1 {
-  font-size: 44px;
+  font-size: 42px;
   line-height: 1.15;
-  letter-spacing: -0.5px;
   margin-bottom: 20px;
 }
 
@@ -145,9 +146,8 @@ body {
 }
 
 .hero-text ul {
-  list-style: none;
-  padding-left: 0;
   margin-bottom: 24px;
+  padding-left: 18px;
 }
 
 .hero-text li {
@@ -246,7 +246,7 @@ footer a {
   margin-right: 1rem;
 }
 
-/* MOBILE IMPROVEMENTS */
+/* MOBILE */
 @media (max-width: 900px) {
   .hero-inner {
     flex-direction: column;
@@ -258,9 +258,15 @@ footer a {
   }
 }
 
+/* FIX FOR SMALL MOBILE */
 @media (max-width: 600px) {
+
+  .header {
+    padding: 16px 20px;
+  }
+
   .hero {
-    padding: 0 20px;
+    padding: 110px 20px 60px 20px;
   }
 
   .hero-text h1 {
@@ -301,15 +307,12 @@ footer a {
     <div class="hero-text">
       <h1>Find Apartments Before They're Gone</h1>
       <p>Instant SMS alerts when new rentals match your budget and bedrooms.</p>
-
       <ul>
         <li>✓ Real-time listing alerts</li>
         <li>✓ No spam. Cancel anytime</li>
         <li>✓ Only $12/month</li>
       </ul>
-
       <a href="#signup-form" class="cta-button">Start Getting Alerts</a>
-
       <p style="margin-top:12px;font-size:14px;color:#6b7280;">
         Secure checkout powered by Stripe • 256-bit SSL encryption
       </p>
